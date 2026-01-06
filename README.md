@@ -8,8 +8,10 @@ Download
 </h1>
 
 ### <img src="https://cdn.simpleicons.org/youtube" height="28" align="absmiddle"> [YouTube Morphe](https://play.google.com/store/apps/details?id=com.google.android.youtube)
+[**Download YouTube Morphe**](https://github.com/../../releases/latest)
 
 ### <img src="https://cdn.simpleicons.org/youtubemusic" height="28" align="absmiddle"> [YouTube Music Morphe](https://play.google.com/store/apps/details?id=com.google.android.apps.youtube.music)
+[**Download YouTube Music Morphe**](https://github.com/../../releases/latest)
 
 ### Social Media & Messengers
 
