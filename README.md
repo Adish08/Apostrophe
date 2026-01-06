@@ -1,0 +1,47 @@
+<h4 align="center">
+<b>
+All the code is open-source, and the APK files used for patching are downloaded from trusted sites.
+</b>
+</h4>
+<h1 align="center">
+Download
+</h1>
+
+### <img src="https://cdn.simpleicons.org/youtube" height="28" align="absmiddle"> [YouTube Morphe](https://play.google.com/store/apps/details?id=com.google.android.youtube)
+
+
+### <img src="https://cdn.simpleicons.org/youtubemusic" height="28" align="absmiddle"> [YouTube Music Morphe](https://play.google.com/store/apps/details?id=com.google.android.apps.youtube.music)
+
+### Social Media & Messengers
+#### <img src="https://cdn.simpleicons.org/facebook" height="22" align="absmiddle"> [Facebook](https://play.google.com/store/apps/details?id=com.facebook.katana)
+[Arm64-v8a](../../releases/download/all/facebook-arm64-v8a-revanced.apk)
+#### <img src="https://cdn.simpleicons.org/instagram" height="22" align="absmiddle"> [Instagram](https://play.google.com/store/apps/details?id=com.instagram.android)
+#### [Instafel:](https://github.com/mamiiblt/instafel)
+#### [Revanced Extended (Arsclib):](https://github.com/inotia00/revanced-patches-arsclib)
+
+[All Architectures](../../releases/download/all/reddit-revanced-extended-arsclib.apk) | [Arm64-v8a](../../releases/download/all/reddit-arm64-v8a-revanced-extended-arsclib.apk)
+
+#### <img src="https://cdn.simpleicons.org/x" height="22" align="absmiddle"> [Twitter (Piko Stable)](https://github.com/crimera/piko)
+[All Architectures](../../releases/download/all/twitter-stable-piko.apk)
+
+#### <img src="https://cdn.simpleicons.org/googlephotos" height="22" align="absmiddle"> [Google Photos](https://play.google.com/store/apps/details?id=com.google.android.apps.photos)
+[Arm64-v8a](../../releases/download/all/gg-photos-arm64-v8a-revanced.apk) | [Armeabi-v7a](../../releases/download/all/gg-photos-armeabi-v7a-revanced.apk)
+
+### ⚠️ Library, resources using in this repository:
+
+<details>
+  <summary>Credits</summary>
+  
+  **Original Work by [FiorenMas](https://github.com/FiorenMas)**
+  
+  [Revanced](https://github.com/revanced)
+  [inotia00](https://github.com/inotia00)
+  [anddea](https://github.com/anddea)
+  [LisoUseInAIKyrios](https://github.com/LisoUseInAIKyrios)
+  [crimera](https://github.com/crimera)
+  [mamiiblt](https://github.com/mamiiblt)
+  
+  [Markdown Badges](https://github.com/Ileriayo/markdown-badges)
+  [pup](https://github.com/ericchiang/pup)
+  [APKEditor](https://github.com/REAndroid/APKEditor)
+</details>
