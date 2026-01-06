@@ -13,7 +13,8 @@ All the code is open-source, and the APK files used for patching are downloaded 
 [**Download Universal**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/youtube-morphe.apk)
 
 ### <img src="https://cdn.simpleicons.org/youtubemusic" height="28" align="absmiddle"> [YouTube Music Morphe](https://play.google.com/store/apps/details?id=com.google.android.apps.youtube.music)
-[**Download Arm64-v8a**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/youtube-music-arm64-v8a-morphe.apk) 
+[**Download Arm64-v8a**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/youtube-music-arm64-v8a-morphe.apk)
+
 [**Download Armeabi-v7a**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/youtube-stable-armeabi-v7a-anddea.apk)
 
 ---
