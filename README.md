@@ -35,8 +35,8 @@ All the code is open-source, and the APK files used for patching are downloaded 
 #### <img src="https://cdn.simpleicons.org/x" height="22" align="absmiddle"> [Twitter (Piko Stable)](https://github.com/crimera/piko)
 [**Download Twitter Piko Universal**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/twitter-stable-piko.apk)
 
+---
 ### • Miscellaneous
-
 
 #### <img src="https://cdn.simpleicons.org/googlephotos" height="22" align="absmiddle"> [Google Photos](https://play.google.com/store/apps/details?id=com.google.android.apps.photos)
 [**Download Arm64-v8a**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/gg-photos-arm64-v8a-revanced.apk)
