@@ -9,23 +9,25 @@ Download
 
 ### <img src="https://cdn.simpleicons.org/youtube" height="28" align="absmiddle"> [YouTube Morphe](https://play.google.com/store/apps/details?id=com.google.android.youtube)
 
-
 ### <img src="https://cdn.simpleicons.org/youtubemusic" height="28" align="absmiddle"> [YouTube Music Morphe](https://play.google.com/store/apps/details?id=com.google.android.apps.youtube.music)
 
 ### Social Media & Messengers
-#### <img src="https://cdn.simpleicons.org/facebook" height="22" align="absmiddle"> [Facebook](https://play.google.com/store/apps/details?id=com.facebook.katana)
-[Arm64-v8a](../../releases/download/all/facebook-arm64-v8a-revanced.apk)
-#### <img src="https://cdn.simpleicons.org/instagram" height="22" align="absmiddle"> [Instagram](https://play.google.com/store/apps/details?id=com.instagram.android)
-#### [Instafel:](https://github.com/mamiiblt/instafel)
-#### [Revanced Extended (Arsclib):](https://github.com/inotia00/revanced-patches-arsclib)
 
-[All Architectures](../../releases/download/all/reddit-revanced-extended-arsclib.apk) | [Arm64-v8a](../../releases/download/all/reddit-arm64-v8a-revanced-extended-arsclib.apk)
+#### <img src="https://cdn.simpleicons.org/facebook" height="22" align="absmiddle"> [Facebook](https://play.google.com/store/apps/details?id=com.facebook.katana)
+[**Download Facebook (Arm64-v8a)**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/facebook-arm64-v8a-revanced.apk)
+
+#### <img src="https://cdn.simpleicons.org/instagram" height="22" align="absmiddle"> [Instagram (Instafel)](https://github.com/mamiiblt/instafel)
+[**Download Instafel APK**](https://github.com/mamiiblt/instafel/releases/latest)
+
+#### <img src="https://cdn.simpleicons.org/reddit" height="22" align="absmiddle"> [Reddit (Revanced Extended Arsclib)](https://github.com/inotia00/revanced-patches-arsclib)
+[**Download Reddit (Arm64-v8a)**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/reddit-arm64-v8a-revanced-extended-arsclib.apk)
 
 #### <img src="https://cdn.simpleicons.org/x" height="22" align="absmiddle"> [Twitter (Piko Stable)](https://github.com/crimera/piko)
-[All Architectures](../../releases/download/all/twitter-stable-piko.apk)
+[**Download Twitter Piko**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/twitter-stable-piko.apk)
 
 #### <img src="https://cdn.simpleicons.org/googlephotos" height="22" align="absmiddle"> [Google Photos](https://play.google.com/store/apps/details?id=com.google.android.apps.photos)
-[Arm64-v8a](../../releases/download/all/gg-photos-arm64-v8a-revanced.apk) | [Armeabi-v7a](../../releases/download/all/gg-photos-armeabi-v7a-revanced.apk)
+[**Download Arm64-v8a**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/gg-photos-arm64-v8a-revanced.apk) 
+[**Download Armeabi-v7a**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/gg-photos-armeabi-v7a-revanced.apk)
 
 ### ⚠️ Library, resources using in this repository:
 
