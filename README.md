@@ -8,6 +8,9 @@ All the code is open-source, and the APK files used for patching are downloaded 
 </b>
 </h4>
 
+## [MicroG RE:](https://github.com/MorpheApp/MicroG-RE)
+
+[![Release](https://img.shields.io/github/v/release/MorpheApp/MicroG-RE?label=All%20Architectures&style=for-the-badge)](https://github.com/MorpheApp/MicroG-RE/releases) 
 
 ### • Youtube
 
