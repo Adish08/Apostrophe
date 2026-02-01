@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Settings - YourTube Hub</title>
+    <meta name="description" content="Backup and restore your YouTube Morphe settings.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="https://cdn.simpleicons.org/youtube/ff0000">
+    <style>
+        .settings-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .code-wrapper {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 20px;
+            overflow-x: auto;
+            min-height: 200px;
+        }
+
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            color: #e0e0e0;
+            white-space: pre-wrap;
+            line-height: 1.6;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .copy-btn.copied {
+            background: #3DDC84;
+            border-color: #3DDC84;
+            color: black;
+        }
+
+        .loading-text {
+            color: #888;
+            font-style: italic;
+        }
+
+        .error-text {
+            color: #ff6b6b;
+        }
+
+        .settings-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .settings-header h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .settings-header p {
+            color: #888;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #888;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-effects">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <header class="glass-header">
+        <div class="container header-content">
+            <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                <img src="https://cdn.simpleicons.org/youtube/ff0000" alt="Logo" class="logo-icon">
+                <h1>YourTube <span class="badge">Hub</span></h1>
+            </div>
+        </div>
+    </header>
+
+    <main class="container settings-container">
+        <a href="index.html" class="back-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to Home
+        </a>
+
+        <div class="settings-header">
+            <h2>YouTube Settings</h2>
+            <p>Copy these settings to restore your configurations in the YouTube app.</p>
+        </div>
+
+        <div class="code-wrapper">
+            <button class="copy-btn" id="copyBtn">
+                <svg id="copyIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span id="copyText">Copy Settings</span>
+            </button>
+            <pre class="code-block"
+                id="settingsContent"><span class="loading-text">Loading settings from GitHub...</span></pre>
+        </div>
+    </main>
+
+    <script>
+        // Use the raw GitHub URL for the settings file
+        const SETTINGS_URL = 'https://raw.githubusercontent.com/Adish08/YourTube/main/YT_Settings';
+
+        async function fetchSettings() {
+            const contentElement = document.getElementById('settingsContent');
+            try {
+                const response = await fetch(SETTINGS_URL);
+                if (!response.ok) throw new Error('Failed to fetch settings');
+
+                let text = await response.text();
+                text = text.trim();
+
+                // If the file content doesn't start with '{', wrap it in braces
+                if (!text.startsWith('{')) {
+                    // Remove trailing comma if present before closing brace
+                    if (text.endsWith(',')) {
+                        text = text.slice(0, -1);
+                    }
+                    text = `{${text}}`;
+                }
+
+                // Parse and re-stringify to format nicely
+                const data = JSON.parse(text);
+                contentElement.textContent = JSON.stringify(data, null, 4);
+                contentElement.classList.remove('loading-text');
+            } catch (error) {
+                console.error('Error:', error);
+
+                // If JSON parsing fails, might be just the text content user wants. 
+                // Show raw text if parse fails but wrap attempt works? No, show error + raw text.
+                contentElement.innerHTML = `<span class="error-text">Error parsing settings. Displaying raw content:<br><br></span>${text || error.message}`;
+            }
+        }
+
+        // Fetch on load
+        fetchSettings();
+
+        // Copy functionality
+        document.getElementById('copyBtn').addEventListener('click', function () {
+            const codeBlock = document.getElementById('settingsContent');
+            const text = codeBlock.innerText;
+
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = this;
+                const copyText = document.getElementById('copyText');
+                const copyIcon = document.getElementById('copyIcon');
+
+                btn.classList.add('copied');
+                copyText.innerText = 'Copied!';
+
+                // Change icon to a checkmark
+                copyIcon.innerHTML = '<polyline points="20 6 9 17 4 12"></polyline>';
+
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    copyText.innerText = 'Copy Settings';
+                    copyIcon.innerHTML = '<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy matches:', err);
+                alert('Failed to copy to clipboard.');
+            });
+        });
+    </script>
+</body>
+
+</html>
