@@ -99,10 +99,10 @@ body {
 
 /* Header */
 .glass-header {
-    background: rgba(10, 10, 15, 0.6);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border-bottom: 1px solid var(--card-border);
+    background: rgba(10, 10, 15, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -112,7 +112,10 @@ body {
 
 .glass-header.scrolled {
     padding: 15px 0;
-    background: rgba(10, 10, 15, 0.9);
+    background: rgba(10, 10, 15, 0.4);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .header-content {
@@ -136,7 +139,7 @@ body {
 .logo-icon {
     width: 32px;
     height: 32px;
-    filter: drop-shadow(0 0 10px rgba(255, 0, 85, 0.5));
+    filter: drop-shadow(0 0 8px rgba(255, 0, 85, 0.6));
 }
 
 .badge {

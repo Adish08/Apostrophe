@@ -4,17 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Settings - YourTube Hub</title>
+    <title>YouTube Settings - Apostrophe Hub</title>
     <meta name="description" content="Backup and restore your YouTube Morphe settings.">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="https://cdn.simpleicons.org/youtube/ff0000">
-    <script>
-        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    </script>
-    <script defer src="/_vercel/insights/script.js"></script>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff0055' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 11H7a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v6c0 2.667-1.333 4.333-4 5'/%3E%3C/svg%3E">
     <style>
         .settings-container {
             max-width: 800px;
@@ -124,8 +121,12 @@
     <header class="glass-header">
         <div class="container header-content">
             <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
-                <img src="https://cdn.simpleicons.org/youtube/ff0000" alt="Logo" class="logo-icon">
-                <h1>YourTube <span class="badge">Hub</span></h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                    class="logo-icon">
+                    <path d="M11 11H7a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v6c0 2.667-1.333 4.333-4 5" />
+                </svg>
+                <h1>Apostrophe <span class="badge">Hub</span></h1>
             </div>
         </div>
     </header>
@@ -161,7 +162,7 @@
 
     <script>
         // Use the raw GitHub URL for the settings file
-        const SETTINGS_URL = 'https://raw.githubusercontent.com/Adish08/YourTube/main/YT_Settings';
+        const SETTINGS_URL = 'https://raw.githubusercontent.com/Adish08/YourTube/main/YT_Settings.json';
 
         async function fetchSettings() {
             const contentElement = document.getElementById('settingsContent');
