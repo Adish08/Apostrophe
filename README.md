@@ -1,56 +1,31 @@
+# Apostrophe
 
-<h1 align="center">
-Download
-</h1>
-<h4 align="center">
-<b>
-All the code is open-source, and the APK files used for patching are downloaded from trusted sites.
-</b>
-</h4>
+> **A premium hub for high-quality patched apps, featuring a modern glassmorphic design and one-click downloads.**
 
-## [MicroG RE:](https://github.com/MorpheApp/MicroG-RE)
+![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square) ![Status](https://img.shields.io/badge/Status-Active-success.svg?style=flat-square)
 
-[![Release](https://img.shields.io/github/v/release/MorpheApp/MicroG-RE?label=All%20Architectures&style=for-the-badge)](https://github.com/MorpheApp/MicroG-RE/releases) 
+## ✨ Features
 
-### • Youtube
+- **🖼️ Modern UI**: A sleek, responsive interface built with glassmorphism aesthetics.
+- **🚀 One-Click Downloads**: Direct links automatically updated from reliable open-source releases.
+- **🛡️ Privacy Focused**: Curated selection of tools designed to enhance your privacy.
+- **📦 Trusted Builds**: Access Morphe, Instander, and other high-quality patched apps.
 
+## 🚀 Usage
 
-### <img src="https://cdn.simpleicons.org/youtube" height="28" align="absmiddle"> [YouTube Morphe](https://play.google.com/store/apps/details?id=com.google.android.youtube)
-[**Download Universal**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/youtube-morphe.apk)
+Simply visit the hub to browse and download the latest versions of your favorite patched applications. No complex setup required.
 
-### <img src="https://cdn.simpleicons.org/youtubemusic" height="28" align="absmiddle"> [YouTube Music Morphe](https://play.google.com/store/apps/details?id=com.google.android.apps.youtube.music)
-[**Download Arm64-v8a**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/youtube-music-arm64-v8a-morphe.apk)
+## 👏 Credits
 
-[**Download Armeabi-v7a**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/youtube-stable-armeabi-v7a-anddea.apk)
+Special thanks to the developers who make these patched apps possible:
 
----
-### • Social Media & Messengers
+- **[Krvtsk](https://github.com/krvstek/uni-apks)**: For maintaining high-quality universal APK builds.
+- **[Morphe](https://github.com/MorpheApp)**: For the excellent Morphe patches and MicroG implementations.
 
-#### <img src="https://cdn.simpleicons.org/facebook" height="22" align="absmiddle"> [Facebook](https://play.google.com/store/apps/details?id=com.facebook.katana)
-[**Download Facebook (Arm64-v8a)**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/facebook-arm64-v8a-revanced.apk)
+> [!IMPORTANT]
+> **Disclaimer**
+>
+> All code is open-source. This project hosts links to APKs compiled by trusted third-party developers. **We do not modify the APKs ourselves.** Always ensure you are downloading from sources you trust.
 
-#### <img src="https://cdn.simpleicons.org/instagram" height="22" align="absmiddle"> [Instagram (Instafel)](https://github.com/mamiiblt/instafel)
-[**Download Instafel**](https://github.com/mamiiblt/instafel/releases/latest)
-
-#### <img src="https://cdn.simpleicons.org/reddit" height="22" align="absmiddle"> [Reddit (Revanced Extended Arsclib)](https://github.com/inotia00/revanced-patches-arsclib)
-[**Download Reddit (Arm64-v8a)**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/reddit-arm64-v8a-revanced-extended-arsclib.apk)
-
-#### <img src="https://cdn.simpleicons.org/x" height="22" align="absmiddle"> [Twitter (Piko Stable)](https://github.com/crimera/piko)
-[**Download Twitter Piko Universal**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/twitter-stable-piko.apk)
-
----
-### • Miscellaneous
-
-#### <img src="https://cdn.simpleicons.org/googlephotos" height="22" align="absmiddle"> [Google Photos](https://play.google.com/store/apps/details?id=com.google.android.apps.photos)
-[**Download Arm64-v8a**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/gg-photos-arm64-v8a-revanced.apk)
-
-[**Download Armeabi-v7a**](https://github.com/FiorenMas/Revanced-And-Revanced-Extended-Non-Root/releases/download/all/gg-photos-armeabi-v7a-revanced.apk)
-
-### ⚠️ Library, resources using in this repository:
-
-<details>
-  <summary>Credits</summary>
-
-  **Original Work by [FiorenMas](https://github.com/FiorenMas)**
-  
-</details>
+> [!NOTE]
+> This project is licensed under the MIT License.
