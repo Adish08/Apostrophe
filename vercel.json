@@ -9,5 +9,12 @@
             "source": "/settings",
             "destination": "/settings.html"
         }
+    ],
+    "redirects": [
+        {
+            "source": "/views",
+            "destination": "https://hits.sh/github.com/Adish08/Apostrophe/",
+            "permanent": false
+        }
     ]
 }
