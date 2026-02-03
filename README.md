@@ -9,7 +9,7 @@
 - **🖼️ Modern UI**: A sleek, responsive interface built with glassmorphism aesthetics.
 - **🚀 One-Click Downloads**: Direct links automatically updated from reliable open-source releases.
 - **🛡️ Privacy Focused**: Curated selection of tools designed to enhance your privacy.
-- **📦 Trusted Builds**: Access Morphe, Instander, and other high-quality patched apps.
+- **📦 Trusted Builds**: Access Morphe, Instafel, and other high-quality patched apps.
 
 ## 🚀 Usage
 
