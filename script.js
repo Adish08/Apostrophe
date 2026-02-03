@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Intersection Observer for Sections Fade-in
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -10,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Only animate once
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
-    // 2. Header Scroll Effect
     const header = document.querySelector('.glass-header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -30,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. 3D Tilt Effect for Cards (Subtle)
     const cards = document.querySelectorAll('.glass-card');
 
     cards.forEach(card => {
@@ -39,19 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
 
-            // Calculate rotation based on cursor position relative to center
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
 
-            const rotateX = ((y - centerY) / centerY) * -5; // Max 5deg
-            const rotateY = ((x - centerX) / centerX) * 5; // Max 5deg
+            const rotateX = ((y - centerY) / centerY) * -5;
+            const rotateY = ((x - centerX) / centerX) * 5;
 
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-
-            // Optional: Moving shine effect ??
-            // We can just rely on the CSS hover for now to keep it clean, 
-            // but the transform override here replaces the css hover transform.
-            // Let's ensure smooth transition is maintained in CSS.
         });
 
         card.addEventListener('mouseleave', () => {
@@ -59,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. GitHub API Fetch for Latest Releases
     const fetchLatestRelease = async (repo, keyword, buttonId, fallbackUrl, btnPrefix = 'Download') => {
         const btn = document.getElementById(buttonId);
         if (!btn) return;
@@ -71,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             const assets = data.assets || [];
 
-            // Find asset that matches keywords (case insensitive)
             const targetAsset = assets.find(asset => {
                 const name = asset.name.toLowerCase();
                 return keyword.every(k => name.includes(k.toLowerCase()));
@@ -81,40 +70,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.href = targetAsset.browser_download_url;
                 btn.removeAttribute('target');
 
-                // Extract App Version from filename (e.g. v20.40.45)
                 const versionMatch = targetAsset.name.match(/v(\d+(\.\d+)+)/);
                 let appVersion = '';
                 if (versionMatch) {
-                    appVersion = versionMatch[0]; // e.g. "v20.40.45"
+                    appVersion = versionMatch[0];
                 }
 
-                // Button Text: Show Prefix + App Version if found, else fallback to Release Tag
                 if (appVersion) {
                     btn.querySelector('span').textContent = `${btnPrefix} ${appVersion}`;
                 } else {
                     btn.querySelector('span').textContent = `${btnPrefix} ${data.tag_name}`;
                 }
 
-                // Description: Show Morphe/Release Tag as a link
                 const cardContent = btn.closest('.card-content');
                 const desc = cardContent.querySelector('.card-desc');
 
-                // Avoid duplicating if already added
                 if (desc && !desc.getAttribute('data-patch-added')) {
                     const tagLink = `<a href="${data.html_url}" target="_blank" class="patch-link">(${data.tag_name})</a>`;
                     desc.innerHTML += tagLink;
                     desc.setAttribute('data-patch-added', 'true');
                 }
             } else {
-                // If specific asset not found, point to release page
-                console.warn(`Asset with keywords ${keyword} not found in ${repo} ${data.tag_name}`);
                 btn.href = data.html_url;
                 btn.querySelector('span').textContent = 'View Latest Release';
             }
 
         } catch (error) {
-            console.error('Error fetching release:', error);
-            // Fallback
             if (fallbackUrl) {
                 btn.href = fallbackUrl;
                 btn.querySelector('span').textContent = 'Download (Fallback)';
@@ -124,8 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Initialize Searches
-    // MicroG: All architectures
     fetchLatestRelease(
         'MorpheApp/MicroG-RE',
         ['.apk'],
@@ -133,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'https://github.com/MorpheApp/MicroG-RE/releases/latest'
     );
 
-    // YouTube Morphe: Look for 'youtube', 'morphe', '.apk'
     fetchLatestRelease(
         'krvstek/uni-apks',
         ['youtube', 'morphe', '.apk'],
@@ -141,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'https://github.com/krvstek/uni-apks/releases/latest'
     );
 
-    // YouTube Music Morphe (Arm64): Look for 'music', 'morphe', 'arm64', '.apk'
     fetchLatestRelease(
         'krvstek/uni-apks',
         ['music', 'morphe', 'arm64', '.apk'],
@@ -150,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'Arm64'
     );
 
-    // YouTube Music Morphe (Arm-v7a): Look for 'music', 'morphe', 'v7a', '.apk'
     fetchLatestRelease(
         'krvstek/uni-apks',
         ['music', 'morphe', 'v7a', '.apk'],
@@ -159,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'Armv7'
     );
 
-    // Instafel: Look for 'uc' (unclone) and 'apk' in 'mamiiblt/instafel'
     fetchLatestRelease(
         'mamiiblt/instafel',
         ['uc', '.apk'],
@@ -167,7 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'https://github.com/mamiiblt/instafel/releases/latest'
     );
 
-    // Reddit: Look for 'reddit', 'morphe', '.apk' in 'krvstek/uni-apks'
     fetchLatestRelease(
         'krvstek/uni-apks',
         ['reddit', 'morphe', '.apk'],
@@ -175,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'https://github.com/krvstek/uni-apks/releases/download/26.01.31-morphe/reddit-morphe-v2026.03.0-all.apk'
     );
 
-    // X (Twitter): Look for 'x-piko-v', '.apk' in 'crimera/twitter-apk'
     fetchLatestRelease(
         'crimera/twitter-apk',
         ['x-piko-v', '.apk'],
@@ -183,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'https://github.com/crimera/twitter-apk/releases/latest'
     );
 
-    // Google Photos: Look for 'arm64', '.apk' in 'mentalblank/GPhotos-Revanced'
     fetchLatestRelease(
         'mentalblank/GPhotos-Revanced',
         ['arm64', '.apk'],
@@ -192,7 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'Arm64'
     );
 
-    // Google Photos: Look for 'arm-v7a', '.apk' in 'mentalblank/GPhotos-Revanced'
     fetchLatestRelease(
         'mentalblank/GPhotos-Revanced',
         ['arm-v7a', '.apk'],
@@ -200,4 +171,30 @@ document.addEventListener('DOMContentLoaded', () => {
         'https://github.com/mentalblank/GPhotos-Revanced/releases/latest',
         'Armv7'
     );
+
+    const popup = document.getElementById('disclaimerPopup');
+    const closeBtn = document.getElementById('closePopupBtn');
+    const STORAGE_KEY = 'apostrophe_disclaimer_accepted_v1';
+
+    if (popup && closeBtn) {
+        if (!localStorage.getItem(STORAGE_KEY)) {
+            setTimeout(() => {
+                popup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }, 500);
+        }
+
+        closeBtn.addEventListener('click', () => {
+            popup.classList.remove('active');
+            document.body.style.overflow = '';
+            localStorage.setItem(STORAGE_KEY, 'true');
+        });
+    }
 });
+
+(async () => {
+    try {
+        await fetch('/api/visit');
+    } catch (e) {
+    }
+})();

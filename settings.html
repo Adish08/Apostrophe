@@ -174,7 +174,6 @@
     </main>
 
     <script>
-        // Use the raw GitHub URL for the settings file
         const SETTINGS_URL = 'https://raw.githubusercontent.com/Adish08/YourTube/main/YT_Settings.json';
 
         async function fetchSettings() {
@@ -186,32 +185,28 @@
                 let text = await response.text();
                 text = text.trim();
 
-                // If the file content doesn't start with '{', wrap it in braces
                 if (!text.startsWith('{')) {
-                    // Remove trailing comma if present before closing brace
                     if (text.endsWith(',')) {
                         text = text.slice(0, -1);
                     }
                     text = `{${text}}`;
                 }
 
-                // Parse and re-stringify to format nicely
                 const data = JSON.parse(text);
                 contentElement.textContent = JSON.stringify(data, null, 4);
                 contentElement.classList.remove('loading-text');
             } catch (error) {
-                console.error('Error:', error);
-
-                // If JSON parsing fails, might be just the text content user wants. 
-                // Show raw text if parse fails but wrap attempt works? No, show error + raw text.
-                contentElement.innerHTML = `<span class="error-text">Error parsing settings. Displaying raw content:<br><br></span>${text || error.message}`;
+                console.error(error);
+                contentElement.innerHTML = `<span class="error-text">Error parsing settings:<br><br></span>${text || error.message}`;
             }
         }
 
-        // Fetch on load
         fetchSettings();
 
-        // Copy functionality
+        (async () => {
+            try { await fetch('/api/visit'); } catch (e) { }
+        })();
+
         document.getElementById('copyBtn').addEventListener('click', function () {
             const codeBlock = document.getElementById('settingsContent');
             const text = codeBlock.innerText;
@@ -223,8 +218,6 @@
 
                 btn.classList.add('copied');
                 copyText.innerText = 'Copied!';
-
-                // Change icon to a checkmark
                 copyIcon.innerHTML = '<polyline points="20 6 9 17 4 12"></polyline>';
 
                 setTimeout(() => {
@@ -233,8 +226,8 @@
                     copyIcon.innerHTML = '<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>';
                 }, 2000);
             }).catch(err => {
-                console.error('Failed to copy matches:', err);
-                alert('Failed to copy to clipboard.');
+                console.error(err);
+                alert('Failed to copy.');
             });
         });
     </script>
