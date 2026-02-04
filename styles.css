@@ -17,6 +17,10 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Outfit', sans-serif;
     background-color: var(--bg-color);
@@ -608,12 +612,14 @@ main {
     padding-top: 15px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .popup-links a {
     color: #00ddeb;
     text-decoration: none;
-    margin-right: 15px;
     transition: color 0.2s;
 }
 
