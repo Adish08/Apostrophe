@@ -508,7 +508,7 @@ main {
     border-radius: 24px;
     padding: 30px;
     max-width: 500px;
-    width: calc(100% - 40px);
+    width: 90%;
     max-height: 85vh;
     display: flex;
     flex-direction: column;
@@ -517,7 +517,6 @@ main {
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
-    box-sizing: border-box;
 }
 
 .popup-content::after {
@@ -650,14 +649,10 @@ main {
 }
 
 @media (max-width: 600px) {
-    .popup-overlay {
-        padding: 15px;
-    }
-
     .popup-content {
         padding: 20px;
-        width: calc(100% - 30px);
-        max-height: 85vh;
+        width: 95%;
+        max-height: 80vh;
     }
 
     .popup-title {
