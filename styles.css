@@ -492,6 +492,7 @@ main {
     visibility: hidden;
     transition: all 0.4s ease;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .popup-overlay.active {
@@ -517,6 +518,7 @@ main {
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .popup-content::after {
@@ -651,8 +653,8 @@ main {
 @media (max-width: 600px) {
     .popup-content {
         padding: 20px;
-        width: 95%;
-        max-height: 80vh;
+        width: 88%;
+        max-height: 85vh;
     }
 
     .popup-title {
