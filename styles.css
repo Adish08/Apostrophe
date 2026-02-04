@@ -508,7 +508,7 @@ main {
     border-radius: 24px;
     padding: 30px;
     max-width: 500px;
-    width: 90%;
+    width: calc(100% - 40px);
     max-height: 85vh;
     display: flex;
     flex-direction: column;
@@ -517,6 +517,7 @@ main {
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .popup-content::after {
@@ -568,10 +569,12 @@ main {
     color: var(--text-muted);
     font-size: 0.95rem;
     line-height: 1.6;
-    line-height: 1.6;
     overflow-y: auto;
     padding-right: 10px;
     flex: 1;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
 .popup-body strong {
@@ -647,14 +650,28 @@ main {
 }
 
 @media (max-width: 600px) {
+    .popup-overlay {
+        padding: 15px;
+    }
+
     .popup-content {
         padding: 20px;
-        width: 95%;
-        max-height: 80vh;
+        width: calc(100% - 30px);
+        max-height: 85vh;
     }
 
     .popup-title {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
+        gap: 8px;
+    }
+
+    .popup-title svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .popup-body {
+        font-size: 0.9rem;
     }
 
     .popup-btn {
