@@ -182,22 +182,12 @@
                 const response = await fetch(SETTINGS_URL);
                 if (!response.ok) throw new Error('Failed to fetch settings');
 
-                let text = await response.text();
-                text = text.trim();
-
-                if (!text.startsWith('{')) {
-                    if (text.endsWith(',')) {
-                        text = text.slice(0, -1);
-                    }
-                    text = `{${text}}`;
-                }
-
-                const data = JSON.parse(text);
-                contentElement.textContent = JSON.stringify(data, null, 4);
+                const text = await response.text();
+                contentElement.textContent = text.trim();
                 contentElement.classList.remove('loading-text');
             } catch (error) {
                 console.error(error);
-                contentElement.innerHTML = `<span class="error-text">Error parsing settings:<br><br></span>${text || error.message}`;
+                contentElement.innerHTML = `<span class="error-text">Error loading settings:<br><br></span>${error.message}`;
             }
         }
 
