@@ -119,18 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.querySelector('span').textContent = `${btnPrefix} ${matchingRelease.tag_name}`;
                 }
 
-                const cardContent = btn.closest('.card-content');
-                const desc = cardContent.querySelector('.card-desc');
 
-                if (desc) {
-                    const tagUrl = matchingRelease.html_url;
-                    if (!desc.querySelector(`a[href="${tagUrl}"]`)) {
-                        const releaseType = buttonId.toLowerCase().includes('experimental') ? 'Experimental' : 'Stable';
-                        const displayVer = appVersion ? appVersion : matchingRelease.tag_name;
-                        const tagLink = `<a href="${tagUrl}" target="_blank" class="patch-link">${releaseType} build (${displayVer})</a>`;
-                        desc.innerHTML += tagLink;
-                    }
-                }
             } else {
                 if (releases.length > 0) {
                     btn.href = releases[0].html_url;
@@ -224,8 +213,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchLatestRelease(
         'ngbangg/builder-for-morphe',
+        ['telegram', 'paresh', '.apk'],
+        'btn-telegram',
+        'https://github.com/ngbangg/builder-for-morphe/releases'
+    );
+
+    fetchLatestRelease(
+        'ngbangg/builder-for-morphe',
         ['google-photos', 'de-vanced', '.apk'],
         'btn-gphotos',
+        'https://github.com/ngbangg/builder-for-morphe/releases'
+    );
+
+    fetchLatestRelease(
+        'ngbangg/builder-for-morphe',
+        ['truecaller', 'paresh', '.apk'],
+        'btn-truecaller',
+        'https://github.com/ngbangg/builder-for-morphe/releases'
+    );
+
+    fetchLatestRelease(
+        'ngbangg/builder-for-morphe',
+        ['vn', 'paresh', '.apk'],
+        'btn-vn',
         'https://github.com/ngbangg/builder-for-morphe/releases'
     );
 
