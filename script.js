@@ -50,15 +50,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    const repoPromises = {};
+
     const fetchLatestRelease = async (repo, keyword, buttonId, fallbackUrl, btnPrefix = 'Download') => {
         const btn = document.getElementById(buttonId);
         if (!btn) return;
 
         try {
-            const response = await fetch(`https://api.github.com/repos/${repo}/releases`);
-            if (!response.ok) throw new Error('Network response was not ok');
+            let releases = null;
+            const cachedKey = `releases_cache_${repo}`;
+            const cachedItem = sessionStorage.getItem(cachedKey);
 
-            const releases = await response.json();
+            if (cachedItem) {
+                try {
+                    const parsed = JSON.parse(cachedItem);
+                    if (parsed && parsed.timestamp && Date.now() - parsed.timestamp < 600000) {
+                        releases = parsed.data;
+                    }
+                } catch (e) {}
+            }
+
+            if (!releases) {
+                if (!repoPromises[repo]) {
+                    repoPromises[repo] = (async () => {
+                        const response = await fetch(`https://api.github.com/repos/${repo}/releases`);
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        const data = await response.json();
+                        try {
+                            sessionStorage.setItem(cachedKey, JSON.stringify({
+                                timestamp: Date.now(),
+                                data: data
+                            }));
+                        } catch (e) {}
+                        return data;
+                    })();
+                }
+                releases = await repoPromises[repo];
+            }
+
             let targetAsset = null;
             let matchingRelease = null;
 
@@ -261,7 +290,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 (async () => {
     try {
-        await fetch('/api/visit');
+        const lastVisit = localStorage.getItem('apostrophe_last_visit');
+        const now = Date.now();
+        // 24 hours rate-limiting for the tracking endpoint
+        if (!lastVisit || now - parseInt(lastVisit, 10) > 86400000) {
+            await fetch('/api/visit');
+            localStorage.setItem('apostrophe_last_visit', now.toString());
+        }
     } catch (e) {
     }
 })();

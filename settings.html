@@ -194,7 +194,14 @@
         fetchSettings();
 
         (async () => {
-            try { await fetch('/api/visit'); } catch (e) { }
+            try {
+                const lastVisit = localStorage.getItem('apostrophe_last_visit');
+                const now = Date.now();
+                if (!lastVisit || now - parseInt(lastVisit, 10) > 86400000) {
+                    await fetch('/api/visit');
+                    localStorage.setItem('apostrophe_last_visit', now.toString());
+                }
+            } catch (e) { }
         })();
 
         document.getElementById('copyBtn').addEventListener('click', function () {
@@ -221,6 +228,7 @@
             });
         });
     </script>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "efed33238e9a4d1bb04bd4273807fdce"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 
 </html>

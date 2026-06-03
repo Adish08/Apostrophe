@@ -323,6 +323,7 @@ main {
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
+    font-family: inherit;
     transition: all 0.2s ease;
     border: none;
     cursor: pointer;
@@ -633,6 +634,8 @@ main {
     width: 100%;
     padding: 14px;
     font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
     letter-spacing: 0.5px;
     cursor: pointer;
     flex-shrink: 0;
