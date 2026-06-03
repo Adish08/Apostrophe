@@ -19,7 +19,8 @@ Simply visit the hub to browse and download the latest versions of your favorite
 
 Special thanks to the developers who make these patched apps possible:
 
-- **[Krvtsk](https://github.com/krvstek/uni-apks)**: For maintaining high-quality universal APK builds.
+- **[Ngbangg](https://github.com/ngbangg/builder-for-morphe)**: For providing an enhanced automated builder with support for additional applications (Stable builds).
+- **[Ravi Kishor](https://github.com/Ravi-Kishor/Revanced-Extended)**: For maintaining latest experimental builds.
 - **[Morphe](https://github.com/MorpheApp)**: For the excellent Morphe patches and MicroG implementations.
 
 > [!IMPORTANT]

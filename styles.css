@@ -682,3 +682,24 @@ main {
         font-size: 0.95rem;
     }
 }
+
+.download-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.download-section:first-of-type {
+    margin-top: 0;
+}
+
+.section-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 2px;
+}

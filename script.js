@@ -55,44 +55,89 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!btn) return;
 
         try {
-            const response = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
+            const response = await fetch(`https://api.github.com/repos/${repo}/releases`);
             if (!response.ok) throw new Error('Network response was not ok');
 
-            const data = await response.json();
-            const assets = data.assets || [];
+            const releases = await response.json();
+            let targetAsset = null;
+            let matchingRelease = null;
 
-            const targetAsset = assets.find(asset => {
-                const name = asset.name.toLowerCase();
-                return keyword.every(k => name.includes(k.toLowerCase()));
-            });
+            for (const release of releases) {
+                const assets = release.assets || [];
+                targetAsset = assets.find(asset => {
+                    const name = asset.name.toLowerCase();
+                    const matchesKeywords = keyword.every(k => name.includes(k.toLowerCase()));
+                    const isExperimentalRequested = keyword.some(k => k.toLowerCase().includes('experimental'));
+                    if (matchesKeywords && !isExperimentalRequested && name.includes('experimental')) {
+                        return false;
+                    }
+                    return matchesKeywords;
+                });
+                if (targetAsset) {
+                    matchingRelease = release;
+                    break;
+                }
+            }
 
-            if (targetAsset) {
+            if (targetAsset && matchingRelease) {
                 btn.href = targetAsset.browser_download_url;
                 btn.removeAttribute('target');
 
-                const versionMatch = targetAsset.name.match(/v(\d+(\.\d+)+)/);
                 let appVersion = '';
+                const versionMatch = targetAsset.name.match(/v(\d+(\.\d+)+)/);
                 if (versionMatch) {
                     appVersion = versionMatch[0];
+                } else if (matchingRelease.body) {
+                    const bodyLines = matchingRelease.body.split(/\r?\n/);
+                    const isYoutube = keyword.some(k => k.toLowerCase().includes('youtube'));
+                    const isMusic = keyword.some(k => k.toLowerCase().includes('music'));
+                    
+                    let targetLine = null;
+                    if (isYoutube) {
+                        targetLine = bodyLines.find(line => {
+                            const l = line.toLowerCase();
+                            return l.includes('youtube') && !l.includes('music');
+                        });
+                    } else if (isMusic) {
+                        targetLine = bodyLines.find(line => {
+                            const l = line.toLowerCase();
+                            return l.includes('music') || l.includes('yt-music');
+                        });
+                    }
+                    
+                    if (targetLine) {
+                        const verMatch = targetLine.match(/v?(\d+(\.\d+)+)/);
+                        if (verMatch) {
+                            appVersion = verMatch[0].startsWith('v') ? verMatch[0] : 'v' + verMatch[0];
+                        }
+                    }
                 }
 
                 if (appVersion) {
                     btn.querySelector('span').textContent = `${btnPrefix} ${appVersion}`;
                 } else {
-                    btn.querySelector('span').textContent = `${btnPrefix} ${data.tag_name}`;
+                    btn.querySelector('span').textContent = `${btnPrefix} ${matchingRelease.tag_name}`;
                 }
 
                 const cardContent = btn.closest('.card-content');
                 const desc = cardContent.querySelector('.card-desc');
 
-                if (desc && !desc.getAttribute('data-patch-added')) {
-                    const tagLink = `<a href="${data.html_url}" target="_blank" class="patch-link">(${data.tag_name})</a>`;
-                    desc.innerHTML += tagLink;
-                    desc.setAttribute('data-patch-added', 'true');
+                if (desc) {
+                    const tagUrl = matchingRelease.html_url;
+                    if (!desc.querySelector(`a[href="${tagUrl}"]`)) {
+                        const releaseType = buttonId.toLowerCase().includes('experimental') ? 'Experimental' : 'Stable';
+                        const displayVer = appVersion ? appVersion : matchingRelease.tag_name;
+                        const tagLink = `<a href="${tagUrl}" target="_blank" class="patch-link">${releaseType} build (${displayVer})</a>`;
+                        desc.innerHTML += tagLink;
+                    }
                 }
             } else {
-                btn.href = data.html_url;
-                btn.querySelector('span').textContent = 'View Latest Release';
+                if (releases.length > 0) {
+                    btn.href = releases[0].html_url;
+                    btn.querySelector('span').textContent = 'View Releases';
+                } else {
+                    throw new Error('No releases found');
+                }
             }
 
         } catch (error) {
@@ -113,63 +158,75 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     fetchLatestRelease(
-        'krvstek/uni-apks',
+        'ngbangg/builder-for-morphe',
         ['youtube', 'morphe', '.apk'],
         'btn-yt-morphe',
-        'https://github.com/krvstek/uni-apks/releases/latest'
+        'https://github.com/ngbangg/builder-for-morphe/releases'
     );
 
     fetchLatestRelease(
-        'krvstek/uni-apks',
+        'Ravi-Kishor/Revanced-Extended',
+        ['youtube', '.apk'],
+        'btn-yt-experimental',
+        'https://github.com/Ravi-Kishor/Revanced-Extended/releases'
+    );
+
+    fetchLatestRelease(
+        'ngbangg/builder-for-morphe',
         ['music', 'morphe', 'arm64', '.apk'],
         'btn-ytm-arm64',
-        'https://github.com/krvstek/uni-apks/releases/latest',
+        'https://github.com/ngbangg/builder-for-morphe/releases',
         'Arm64'
     );
 
     fetchLatestRelease(
-        'krvstek/uni-apks',
+        'ngbangg/builder-for-morphe',
         ['music', 'morphe', 'v7a', '.apk'],
         'btn-ytm-armv7',
-        'https://github.com/krvstek/uni-apks/releases/latest',
+        'https://github.com/ngbangg/builder-for-morphe/releases',
         'Armv7'
     );
 
     fetchLatestRelease(
-        'mamiiblt/instafel',
-        ['uc', '.apk'],
-        'btn-instafel',
-        'https://github.com/mamiiblt/instafel/releases/latest'
+        'Ravi-Kishor/Revanced-Extended',
+        ['music', '.apk'],
+        'btn-ytm-experimental',
+        'https://github.com/Ravi-Kishor/Revanced-Extended/releases'
     );
 
     fetchLatestRelease(
-        'krvstek/uni-apks',
+        'ngbangg/builder-for-morphe',
+        ['instagram', 'piko', '.apk'],
+        'btn-instagram',
+        'https://github.com/ngbangg/builder-for-morphe/releases'
+    );
+
+    fetchLatestRelease(
+        'ngbangg/builder-for-morphe',
+        ['facebook', 'de-vanced', '.apk'],
+        'btn-facebook',
+        'https://github.com/ngbangg/builder-for-morphe/releases'
+    );
+
+    fetchLatestRelease(
+        'ngbangg/builder-for-morphe',
         ['reddit', 'morphe', '.apk'],
         'btn-reddit',
-        'https://github.com/krvstek/uni-apks/releases/download/26.01.31-morphe/reddit-morphe-v2026.03.0-all.apk'
+        'https://github.com/ngbangg/builder-for-morphe/releases'
     );
 
     fetchLatestRelease(
-        'crimera/twitter-apk',
-        ['x-piko-v', '.apk'],
+        'ngbangg/builder-for-morphe',
+        ['twitter', 'piko', '.apk'],
         'btn-twitter',
-        'https://github.com/crimera/twitter-apk/releases/latest'
+        'https://github.com/ngbangg/builder-for-morphe/releases'
     );
 
     fetchLatestRelease(
-        'mentalblank/GPhotos-Revanced',
-        ['arm64', '.apk'],
-        'btn-gphotos-arm64',
-        'https://github.com/mentalblank/GPhotos-Revanced/releases/latest',
-        'Arm64'
-    );
-
-    fetchLatestRelease(
-        'mentalblank/GPhotos-Revanced',
-        ['arm-v7a', '.apk'],
-        'btn-gphotos-armv7',
-        'https://github.com/mentalblank/GPhotos-Revanced/releases/latest',
-        'Armv7'
+        'ngbangg/builder-for-morphe',
+        ['google-photos', 'de-vanced', '.apk'],
+        'btn-gphotos',
+        'https://github.com/ngbangg/builder-for-morphe/releases'
     );
 
     const popup = document.getElementById('disclaimerPopup');
