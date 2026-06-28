@@ -283,6 +283,12 @@ main {
     margin-bottom: 10px;
 }
 
+.card-content h3 a {
+    color: inherit;
+    text-decoration: none;
+    pointer-events: none;
+}
+
 .card-desc {
     color: var(--text-muted);
     margin-bottom: 25px;

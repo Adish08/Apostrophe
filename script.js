@@ -220,6 +220,13 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['threads', 'de-vanced', '.apk'],
+        'btn-threads',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
         'ngbangg/builder-for-morphe',
         ['facebook', 'de-vanced', '.apk'],
         'btn-facebook',
@@ -255,6 +262,13 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['inshorts', 'de-vanced', '.apk'],
+        'btn-inshorts',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
         'ngbangg/builder-for-morphe',
         ['truecaller', 'paresh', '.apk'],
         'btn-truecaller',
@@ -266,6 +280,125 @@ document.addEventListener('DOMContentLoaded', () => {
         ['vn', 'paresh', '.apk'],
         'btn-vn',
         'https://github.com/ngbangg/builder-for-morphe/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['windscribe-vpn', 'rushi', '.apk'],
+        'btn-windscribe',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['terabox', 'rushi', '.apk'],
+        'btn-terabox',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['speedtest-by-ookla', 'rushi', '.apk'],
+        'btn-speedtest',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['accuweather', 'rushi', '.apk'],
+        'btn-accuweather',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['1.1.1.1', 'rushi', '.apk'],
+        'btn-warp',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['ticktick', 'paresh', '.apk'],
+        'btn-ticktick',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['macrodroid', 'paresh', '.apk'],
+        'btn-macrodroid',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['xodo', 'hoo-dles', '.apk'],
+        'btn-xodo',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['wps-office', 'hoo-dles', '.apk'],
+        'btn-wpsoffice',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['windy', 'hoo-dles', '.apk'],
+        'btn-windy',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['smart-launcher-6', 'hoo-dles', '.apk'],
+        'btn-smartlauncher',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['sleep-as-android', 'hoo-dles', '.apk'],
+        'btn-sleep',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['nova-launcher', 'hoo-dles', '.apk'],
+        'btn-novalauncher',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['niagara-launcher', 'hoo-dles', '.apk'],
+        'btn-niagara',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['ibis-paint-x', 'hoo-dles', '.apk'],
+        'btn-ibispaint',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['duolingo', 'hoo-dles', '.apk'],
+        'btn-duolingo',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
+    );
+
+    fetchLatestRelease(
+        'builder-for-morphe/builder-for-morphe.github.io',
+        ['busuu', 'hoo-dles', '.apk'],
+        'btn-busuu',
+        'https://github.com/builder-for-morphe/builder-for-morphe.github.io/releases'
     );
 
     const popup = document.getElementById('disclaimerPopup');
