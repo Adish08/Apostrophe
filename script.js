@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const observerOptions = {
         root: null,
-        rootMargin: '0px',
-        threshold: 0.1
+        rootMargin: '100px',
+        threshold: 0.01
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -146,6 +146,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.querySelector('span').textContent = `${btnPrefix} ${appVersion}`;
                 } else {
                     btn.querySelector('span').textContent = `${btnPrefix} ${matchingRelease.tag_name}`;
+                }
+
+                if (targetAsset.updated_at) {
+                    try {
+                        const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+                        const formattedDate = new Date(targetAsset.updated_at).toLocaleDateString('en-US', dateOptions);
+                        
+                        const cardContent = btn.closest('.card-content');
+                        if (cardContent) {
+                            let updateEl = cardContent.querySelector('.card-update');
+                            if (!updateEl) {
+                                updateEl = document.createElement('div');
+                                updateEl.className = 'card-update';
+                                const cardDesc = cardContent.querySelector('.card-desc');
+                                if (cardDesc) {
+                                    cardDesc.parentNode.insertBefore(updateEl, cardDesc.nextSibling);
+                                } else {
+                                    btn.parentNode.insertBefore(updateEl, btn);
+                                }
+                            }
+                            updateEl.textContent = `Updated: ${formattedDate}`;
+                        }
+                    } catch (e) {
+                        console.error('Error formatting release date:', e);
+                    }
                 }
 
 
@@ -419,6 +444,29 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem(STORAGE_KEY, 'true');
         });
     }
+
+    // Escape in-app browsers/WebViews on Android to force default browser downloads
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn');
+        if (btn && btn.href && btn.href.startsWith('http')) {
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
+            const isAndroid = /android/i.test(ua);
+            
+            if (isAndroid) {
+                try {
+                    const url = new URL(btn.href);
+                    // Remove protocol
+                    const urlWithoutProtocol = url.hostname + url.pathname + url.search + url.hash;
+                    const intentUrl = `intent://${urlWithoutProtocol}#Intent;scheme=https;end`;
+                    
+                    e.preventDefault();
+                    window.location.href = intentUrl;
+                } catch (err) {
+                    console.error('Error generating intent URL:', err);
+                }
+            }
+        }
+    });
 });
 
 (async () => {
