@@ -52,62 +52,151 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const repoPromises = {};
 
+    const syntropheChannels = {
+        'btn-yt-morphe': 'morphe',
+        'btn-yt-experimental': 'morphe-dev',
+        'btn-ytm-arm64': 'morphe',
+        'btn-ytm-armv7': 'morphe',
+        'btn-instagram': 'piko',
+        'btn-threads': 'de-vanced',
+        'btn-facebook': 'de-vanced',
+        'btn-reddit': 'morphe',
+        'btn-twitter': 'piko',
+        'btn-telegram': 'paresh',
+        'btn-truecaller': 'paresh',
+        'btn-vn': 'paresh',
+        'btn-windscribe': 'rushi',
+        'btn-terabox': 'rushi',
+        'btn-speedtest': 'rushi',
+        'btn-accuweather': 'rushi',
+        'btn-warp': 'rushi',
+        'btn-ticktick': 'paresh',
+        'btn-macrodroid': 'paresh',
+        'btn-xodo': 'hoo-dles',
+        'btn-wpsoffice': 'hoo-dles',
+        'btn-windy': 'hoo-dles',
+        'btn-smartlauncher': 'hoo-dles',
+        'btn-sleep': 'hoo-dles',
+        'btn-novalauncher': 'hoo-dles',
+        'btn-niagara': 'hoo-dles',
+        'btn-ibispaint': 'hoo-dles',
+        'btn-duolingo': 'hoo-dles',
+        'btn-busuu': 'hoo-dles'
+    };
+
     const fetchLatestRelease = async (repo, keyword, buttonId, fallbackUrl, btnPrefix = 'Download') => {
         const btn = document.getElementById(buttonId);
         if (!btn) return;
 
         try {
-            let releases = null;
-            const cachedKey = `releases_cache_${repo}`;
-            const cachedItem = sessionStorage.getItem(cachedKey);
-
-            if (cachedItem) {
-                try {
-                    const parsed = JSON.parse(cachedItem);
-                    if (parsed && parsed.timestamp && Date.now() - parsed.timestamp < 600000) {
-                        releases = parsed.data;
-                    }
-                } catch (e) {}
-            }
-
-            if (!releases) {
-                if (!repoPromises[repo]) {
-                    repoPromises[repo] = (async () => {
-                        const response = await fetch(`https://api.github.com/repos/${repo}/releases`);
-                        if (!response.ok) throw new Error('Network response was not ok');
-                        const data = await response.json();
-                        try {
-                            sessionStorage.setItem(cachedKey, JSON.stringify({
-                                timestamp: Date.now(),
-                                data: data
-                            }));
-                        } catch (e) {}
-                        return data;
-                    })();
-                }
-                releases = await repoPromises[repo];
-            }
-
             let targetAsset = null;
             let matchingRelease = null;
 
-            for (const release of releases) {
-                const assets = release.assets || [];
-                targetAsset = assets.find(asset => {
-                    const name = asset.name.toLowerCase();
-                    const matchesKeywords = keyword.every(k => name.includes(k.toLowerCase()));
-                    const isExperimentalRequested = keyword.some(k => k.toLowerCase().includes('experimental'));
-                    if (matchesKeywords && !isExperimentalRequested && name.includes('experimental')) {
-                        return false;
+            // 1. Try to fetch from Syntrophe first if a channel is mapped
+            const channel = syntropheChannels[buttonId];
+            if (channel) {
+                try {
+                    let syntropheReleases = null;
+                    const syntropheCachedKey = 'releases_cache_Adish08_Syntrophe';
+                    const cachedItem = sessionStorage.getItem(syntropheCachedKey);
+
+                    if (cachedItem) {
+                        try {
+                            const parsed = JSON.parse(cachedItem);
+                            if (parsed && parsed.timestamp && Date.now() - parsed.timestamp < 600000) {
+                                syntropheReleases = parsed.data;
+                            }
+                        } catch (e) {}
                     }
-                    return matchesKeywords;
-                });
-                if (targetAsset) {
-                    matchingRelease = release;
-                    break;
+
+                    if (!syntropheReleases) {
+                        if (!repoPromises['Adish08/Syntrophe']) {
+                            repoPromises['Adish08/Syntrophe'] = (async () => {
+                                const response = await fetch('https://api.github.com/repos/Adish08/Syntrophe/releases');
+                                if (!response.ok) throw new Error('Syntrophe response was not ok');
+                                const data = await response.json();
+                                try {
+                                    sessionStorage.setItem(syntropheCachedKey, JSON.stringify({
+                                        timestamp: Date.now(),
+                                        data: data
+                                    }));
+                                } catch (e) {}
+                                return data;
+                            })();
+                        }
+                        syntropheReleases = await repoPromises['Adish08/Syntrophe'];
+                    }
+
+                    const channelRelease = syntropheReleases.find(r => r.tag_name && r.tag_name.endsWith(`-${channel}`));
+                    if (channelRelease) {
+                        const assets = channelRelease.assets || [];
+                        targetAsset = assets.find(asset => {
+                            const name = asset.name.toLowerCase();
+                            // Filter out the channel name from keyword checking since the release tag already guarantees the channel
+                            const cleanKeywords = keyword.filter(k => k.toLowerCase() !== channel.toLowerCase());
+                            return cleanKeywords.every(k => name.includes(k.toLowerCase()));
+                        });
+                        if (targetAsset) {
+                            matchingRelease = channelRelease;
+                        }
+                    }
+                } catch (e) {
+                    console.warn(`Failed to fetch from Syntrophe for ${buttonId}, falling back to original repo:`, e);
                 }
             }
 
+            // 2. Fallback to original repo if not found in Syntrophe
+            let releases = null;
+            if (!targetAsset || !matchingRelease) {
+                const cachedKey = `releases_cache_${repo}`;
+                const cachedItem = sessionStorage.getItem(cachedKey);
+
+                if (cachedItem) {
+                    try {
+                        const parsed = JSON.parse(cachedItem);
+                        if (parsed && parsed.timestamp && Date.now() - parsed.timestamp < 600000) {
+                            releases = parsed.data;
+                        }
+                    } catch (e) {}
+                }
+
+                if (!releases) {
+                    if (!repoPromises[repo]) {
+                        repoPromises[repo] = (async () => {
+                            const response = await fetch(`https://api.github.com/repos/${repo}/releases`);
+                            if (!response.ok) throw new Error('Network response was not ok');
+                            const data = await response.json();
+                            try {
+                                sessionStorage.setItem(cachedKey, JSON.stringify({
+                                    timestamp: Date.now(),
+                                    data: data
+                                }));
+                            } catch (e) {}
+                            return data;
+                        })();
+                    }
+                    releases = await repoPromises[repo];
+                }
+
+                for (const release of releases) {
+                    const assets = release.assets || [];
+                    targetAsset = assets.find(asset => {
+                        const name = asset.name.toLowerCase();
+                        const matchesKeywords = keyword.every(k => name.includes(k.toLowerCase()));
+                        const isExperimentalRequested = keyword.some(k => k.toLowerCase().includes('experimental'));
+                        if (matchesKeywords && !isExperimentalRequested && name.includes('experimental')) {
+                            return false;
+                        }
+                        return matchesKeywords;
+                    });
+                    if (targetAsset) {
+                        matchingRelease = release;
+                        break;
+                    }
+                }
+            }
+
+            // 3. Update the UI with targetAsset and matchingRelease
             if (targetAsset && matchingRelease) {
                 btn.href = targetAsset.browser_download_url;
                 btn.removeAttribute('target');
@@ -172,12 +261,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         console.error('Error formatting release date:', e);
                     }
                 }
-
-
             } else {
-                if (releases.length > 0) {
+                if (releases && releases.length > 0) {
                     btn.href = releases[0].html_url;
                     btn.querySelector('span').textContent = 'View Releases';
+                } else if (fallbackUrl) {
+                    btn.href = fallbackUrl;
+                    btn.querySelector('span').textContent = 'Download (Fallback)';
                 } else {
                     throw new Error('No releases found');
                 }
@@ -280,10 +370,10 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     fetchLatestRelease(
-        'ngbangg/builder-for-morphe',
-        ['google-photos', 'de-vanced', '.apk'],
+        'RookieEnough/Morphe-AutoBuilds',
+        ['google-photos', '.apk'],
         'btn-gphotos',
-        'https://github.com/ngbangg/builder-for-morphe/releases'
+        'https://github.com/RookieEnough/Morphe-AutoBuilds/releases'
     );
 
     fetchLatestRelease(
